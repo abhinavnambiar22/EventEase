@@ -1,0 +1,65 @@
+import React from "react";
+import "./EventCard.css"; // Reusing the same styles
+
+const formatDateTime = (timestampString) => {
+  if (!timestampString) return { formattedDate: "N/A", formattedTime: "N/A" };
+
+  // Convert "2025-06-03 08:46:14.383738" → "2025-06-03T08:46:14"
+  const isoCompatible = timestampString.replace(" ", "T").split(".")[0];
+
+  const date = new Date(isoCompatible);
+  if (isNaN(date.getTime())) {
+    return { formattedDate: "Invalid Date", formattedTime: "Invalid Time" };
+  }
+
+  const formattedDate = date.toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric"
+  });
+
+  const formattedTime = date.toLocaleTimeString("en-US", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: true
+  });
+
+  return { formattedDate, formattedTime };
+};
+
+
+
+const Organizer_ClubCard = ({ club }) => {
+  const {
+    name = "Untitled Club",
+    description = "",
+    status = "Pending",
+    created_at,
+    rejection_reason = ""
+  } = club;
+
+  const { formattedDate, formattedTime } = formatDateTime(created_at);
+
+  return (
+    <div className="event-card">
+      <img
+        className="event-poster"
+        src='/images/defaultposter.png'
+        alt={`${name} Poster`}
+      />
+      <div className="event-details">
+        <h3 className="event-title">{name}</h3>
+        <p><strong>Description:</strong> {description || "No description provided."}</p>
+        <p><strong>Request Date:</strong> {formattedDate}</p>
+        <p><strong>Request Time:</strong> {formattedTime}</p>
+        <p><strong>Status:</strong> {status}</p>
+
+        {status.toLowerCase() === "rejected" && rejection_reason  && (
+            <p><strong>Reason:</strong> {rejection_reason}</p>
+          )}
+      </div>
+    </div>
+  );
+};
+
+export default Organizer_ClubCard;

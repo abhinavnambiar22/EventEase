@@ -1,0 +1,69 @@
+# === Global ===
+node_modules
+package-lock.json
+dist
+dist-ssr
+*.log
+*.local
+.DS_Store
+
+# === Logs ===
+logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# === Editor directories and files ===
+.vscode/
+!.vscode/extensions.json
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# === Backend-specific ===
+backend/node_modules
+backend/package-lock.json
+
+# === Frontend-specific ===
+my-react-app/node_modules
+my-react-app/package-lock.json
+
+# === Certificates and Secrets ===
+my-react-app/certs/
+backend/certs/
+nginx/certs/
+
+# === Docker Artifacts ===
+containers-tcpdump-pcap/
+
+# === NGINX Build and Config Files (optional if generated) ===
+nginx/html/
+nginx/vhost.d/
+
+# === Frontend Build Output ===
+my-react-app/dist/
+
+# === .env files ===
+.env
+.env.*
+my-react-app/.env
+my-react-app/.env.*
+backend/.env
+backend/.env.*
+
+# === Sensitive or Backup Files ===
+eventease.dump
+eventease_backup.dump
+olddb.dump
+
+# === PostgreSQL Configs (if not custom and version-controlled)
+pg_hba.conf
+postgresql.conf
+
+# === Structure/diagnostic files
+structure.txt

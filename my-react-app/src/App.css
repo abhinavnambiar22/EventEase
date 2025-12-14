@@ -1,0 +1,16 @@
+/* App.css */
+
+.App {
+  text-align: center;
+}
+
+body {
+  padding: 0;
+} 
+
+
+.page-container {
+  padding: 2rem;
+  background-color: #fff;
+  min-height: calc(100vh - 100px); /* Adjust based on your header/footer sizes */
+}

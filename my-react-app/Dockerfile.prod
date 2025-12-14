@@ -1,0 +1,19 @@
+# --- Build Stage ---
+FROM node:18-alpine AS build
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm install
+COPY . .
+# RUN mkdir -p /app/dist && chown -R node:node /app /app/dist
+# USER node
+RUN mkdir -p /app/dist && chown node:node /app /app/dist
+USER node
+COPY --chown=node:node . .
+
+RUN npm run build
+
+
+# --- Production Stage (NGINX) ---
+FROM nginx:alpine
+COPY --from=build /app/dist /usr/share/nginx/html
